@@ -2,22 +2,13 @@
 #include <TimeLib.h>
 
 /*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
+  POVCLock
+  Turns the five LEDs on with respect to the 5x5 grid pattern for the respective numbers of the clock for 50 millisecond, then off for 50 milliseconds second, repeatedly.
 
-  Most Arduinos have an on-board LED you can control. On the UNO, MEGA and ZERO 
-  it is attached to digital pin 13, on MKR1000 on pin 6. LED_BUILTIN takes care 
-  of use the correct LED pin whatever is the board used.
-  If you want to know what pin the on-board LED is connected to on your Arduino model, check
-  the Technical Specs of your board  at https://www.arduino.cc/en/Main/Products
-  
-  This example code is in the public domain.
+  This code was debugged using an Arduino Pro Mini 5V 16MHz with the LEDs connected to the pins 4, 5, 6, 7, and 8. Currently, Only manual input of time works.
 
-  modified 8 May 2014
-  by Scott Fitzgerald
-  
-  modified 2 Sep 2016
-  by Arturo Guadalupi
+  created 2 Nov 2014
+  by Jeremy Philemon
 */
 
 
@@ -31,45 +22,7 @@ void setup() {
   pinMode(8, OUTPUT);
 }
 
-// the loop function runs over and over again forever
-/*void loop() {
-  int arr[]={4,5,6,7,8};
-  for(int i=0;i<5;i++)
-  {
-  digitalWrite(arr[i], HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(50);                       // wait for a second
-  digitalWrite(arr[i], LOW);    // turn the LED off by making the voltage LOW
-  delay(50);
-  }// wait for a second
-}*/
-
-/*void loop()
-{
-  digitalWrite(4,HIGH); //First Line of H
-  digitalWrite(5,HIGH); 
-  digitalWrite(6,HIGH); 
-  digitalWrite(7,HIGH); 
-  digitalWrite(8,HIGH); 
-  delay(500); 
-  for(int i=0;i<3;i++)
-  {
-    digitalWrite(4,LOW); //Middle Line of H
-    digitalWrite(5,LOW); 
-    digitalWrite(6,HIGH); 
-    digitalWrite(7,LOW); 
-    digitalWrite(8,LOW);  
-    delay(500); 
-  }
-  digitalWrite(4,HIGH); //Last Line of H
-  digitalWrite(5,HIGH); 
-  digitalWrite(6,HIGH); 
-  digitalWrite(7,HIGH); 
-  digitalWrite(8,HIGH); 
-  delay(500);
-space();
-}*/
-
-void loop()
+void loop() //Example displays time 12:42:08
 {
    disp(1);
    disp(2);
@@ -81,17 +34,17 @@ void loop()
    disp(8);
 }
 
-void space() //prints two space
+void space() //Prints a space (All LEDs will be off)
 {
-    digitalWrite(4,LOW); 
-    digitalWrite(5,LOW); 
-    digitalWrite(6,LOW); 
-    digitalWrite(7,LOW); 
-    digitalWrite(8,LOW); 
-    delay(3 0); 
+    digitalWrite(4,LOW);
+    digitalWrite(5,LOW);
+    digitalWrite(6,LOW);
+    digitalWrite(7,LOW);
+    digitalWrite(8,LOW);
+    delay(30);
 }
 
-void disp(int n)
+void disp(int n) //Prints the number 'n' passed.
 {
   switch(n)
   {
@@ -114,7 +67,7 @@ void disp(int n)
       num(1,0,0,0,1);
       num(1,0,1,0,1);
       num(1,0,1,0,1);
-      num(0,1,0,1,0);  
+      num(0,1,0,1,0);
       break;
     case 4:
       num(0,1,1,0,0);
@@ -165,7 +118,7 @@ void disp(int n)
       num(1,0,0,0,1);
       num(0,1,1,1,0);
       break;
-    case 42:
+    case 42: //This prints a colon.
       num(0,0,0,0,0);
       num(0,0,0,0,0);
       num(0,1,0,1,0);
@@ -175,14 +128,12 @@ void disp(int n)
   }
 }
 
-void num(int a,int b,int c, int d, int e)
+void num(int a,int b,int c, int d, int e) //This is for one strip of 5 LEDs.
 {
-  digitalWrite(4,a); 
-  digitalWrite(5,b); 
-  digitalWrite(6,c); 
-  digitalWrite(7,d); 
-  digitalWrite(8,e); 
-  delay(30); 
+  digitalWrite(4,a);
+  digitalWrite(5,b);
+  digitalWrite(6,c);
+  digitalWrite(7,d);
+  digitalWrite(8,e);
+  delay(30);
 }
-
-
